@@ -1,5 +1,19 @@
 # Read / Write Transaction 분리
  - springboot에서 Read / Write Transaction 분리하여 데이터소스에 접근
+ - springboot에 있는 HikariCP를 사용하지 않고 외부 Pool(예 AWS RDS Proxy)에 직접연결 하기 위해 HikariCP를 disable
+    . spring.datasource.type=org.springframework.jdbc.datasource.SimpleDriverDataSource
+    . datasource로 SimpleDriverDataSource를 사용
+    '''
+    public DataSource masterDataSource() {
+        SimpleDriverDataSource ds = new SimpleDriverDataSource();
+
+        ds.setDriverClass(org.postgresql.Driver.class);
+        ds.setUrl(masterDetails.getUrl());
+        ds.setUsername(masterDetails.getUsername());
+        ds.setPassword(masterDetails.getPassword());
+        return ds;
+    }  
+    '''
  - service 파일 참조
  '''
   @Transactional(readOnly = true)
