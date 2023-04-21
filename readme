@@ -14,6 +14,21 @@
         return ds;
     }  
     '''
+    . application.properties 파일에서 username, password, url등은 필요 맞게 수정하여 사용
+    '''
+    #master
+    spring.datasource.master.url=jdbc:postgresql://{Reader/Writer End Pointer}/{DBName}
+    spring.datasource.master.username={User Name}
+    spring.datasource.master.password={User Password}
+    spring.datasource.master.driver-class-name=org.postgresql.Driver
+
+    #slave
+    spring.datasource.slave.url=jdbc:postgresql://{Reader End Pointer}/{DBName}
+    spring.datasource.slave.username={Usre Name}
+    spring.datasource.slave.password={User Password}
+    spring.datasource.slave.driver-class-name=org.postgresql.Driver    
+    '''
+
  - service 파일 참조
  '''
   @Transactional(readOnly = true)
