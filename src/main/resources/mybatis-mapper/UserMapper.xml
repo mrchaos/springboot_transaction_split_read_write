@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cherry.cworld.awsproxyrds.repository.UserMapper">
+    <!-- 사용자 목록 가져오기 -->
+    <select id="selectUsers" parameterType="hashMap" resultType="User">
+        SELECT test1, test2  FROM TB_TEMP_20230421  limit 10
+    </select>
+
+    <update id="updateUserByID">
+        UPDATE TB_TEMP_20230421
+        SET test2 = 'XXX'
+        WHERE test1 = '100'
+    </update>
+
+    <update id="updateUserByID2">
+        UPDATE TB_TEMP_20230421
+        SET test2 = 'MrChaos'
+        WHERE test1 = '100'
+    </update>    
+</mapper>
